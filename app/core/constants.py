@@ -1,0 +1,1 @@
+DEFAULT_CMD_PREFIXES: list[str] = ('/',)

@@ -1,0 +1,13 @@
+.env
+.env.dev
+.mypy_cache/
+.vscode/
+*.pyc
+__pycache__/
+.git
+.log
+test.py
+.ruff_cache/
+logs/
+*.log
+*.json

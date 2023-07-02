@@ -1,0 +1,6 @@
+.gitignore
+./.vscode
+*.md
+./pycache
+*.pyc
+./.mypy_cache
