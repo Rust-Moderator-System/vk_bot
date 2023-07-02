@@ -19,4 +19,4 @@ jobs:
           script: |
             cd vk_bot
             git pull
-            sudo make build
+            make build
