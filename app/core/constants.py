@@ -1,1 +1,3 @@
-DEFAULT_CMD_PREFIXES: list[str] = ('/',)
+class BotTypes:
+    MAIN = 'main'
+    REPORT = 'report'

@@ -1,7 +1,8 @@
-from typing import Any
+from typing import Never
+
+from vkbottle.bot import BotLabeler, rules
 
 from utils.handlers import BaseCmdHandler
-from vkbottle.bot import BotLabeler, rules
 
 
 class BaseCmdLabeler(BotLabeler):
@@ -18,5 +19,5 @@ class BaseCmdLabeler(BotLabeler):
         handler_instance.rules.append(rules.PeerRule(from_chat=False))
         self.message_view.handlers.append(handler_instance)
 
-    def raw_event(self, *args, **kwargs):
+    def raw_event(self, *args, **kwargs) -> Never:
         raise NotImplementedError('raw event not available for `CmdLabeler`')

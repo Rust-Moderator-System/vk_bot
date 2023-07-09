@@ -1,7 +1,9 @@
-from vkbottle.bot import BotLabeler
 from vkbottle import Bot, Token
-from app.handlers import main_handlers, report_handlers
+from vkbottle.bot import BotLabeler
+
 from app.core import settings
+from app.handlers import main_handlers, report_handlers
+
 
 class BaseRoomBot(Bot):
     TOKEN: Token
