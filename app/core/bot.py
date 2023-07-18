@@ -2,13 +2,13 @@ from vkbottle import Bot, Token
 from vkbottle.bot import BotLabeler
 
 from app.core import settings
-from app.handlers import main_handlers, report_handlers
+from app.handlers import labelers
 
 
-class BaseRoomBot(Bot):
+class BaseBot(Bot):
     TOKEN: Token
     BOT_LABELERS: list[BotLabeler]
-    
+
     def __init__(self) -> None:
         super().__init__(self.TOKEN)
         self._load_labelers()
@@ -18,16 +18,9 @@ class BaseRoomBot(Bot):
             self.labeler.load(labeler)
 
 
-
-class MainBot(BaseRoomBot):
+class MainBot(BaseBot):
     TOKEN = settings.MAIN_BOT_TOKEN
-    BOT_LABELERS = main_handlers
-
-
-class ReportBot(BaseRoomBot):
-    TOKEN = settings.REPORT_BOT_TOKEN
-    BOT_LABELERS = report_handlers
+    BOT_LABELERS = labelers
 
 
 main_bot = MainBot()
-report_bot = ReportBot()

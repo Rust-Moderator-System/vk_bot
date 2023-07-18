@@ -13,7 +13,7 @@ class BaseCmdLabeler(BotLabeler):
         handler_instance = handler()
         handler_instance.rules.append(rules.PeerRule())
         self.message_view.handlers.append(handler_instance)
-    
+
     def private_message(self, handler: type[BaseCmdHandler]) -> None:
         handler_instance = handler()
         handler_instance.rules.append(rules.PeerRule(from_chat=False))

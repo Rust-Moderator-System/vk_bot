@@ -12,9 +12,9 @@ class Settings(BaseSettings):
     MAIN_BOT_TOKEN: Token
     MAIN_CONFIRMATION_CODE: str
 
-    ## REPORT BOT
-    REPORT_BOT_TOKEN: Token
-    REPORT_CONFIRMATION_CODE: str
+    # SERVICES SETTINGS
+    SERVER_API_URL: str
+    RCC_KEY: str
 
     # WS SETTINGS
     PORT: int = 7777

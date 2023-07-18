@@ -1,6 +1,7 @@
+from urllib.parse import urljoin
+
 import aiohttp
 from loguru import logger
-from urllib.parse import urljoin
 
 
 class HTTPClient:

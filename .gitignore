@@ -11,3 +11,5 @@ test.py
 logs/
 *.log
 *.json
+*.xml
+*.iml

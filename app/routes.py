@@ -2,7 +2,7 @@ from fastapi import APIRouter, BackgroundTasks, HTTPException, Request, Response
 from loguru import logger
 
 from app.core import settings
-from app.core.bot import BaseRoomBot, main_bot, report_bot
+from app.core.bot import BaseBot, main_bot
 from app.core.constants import BotTypes
 
 bot_router = APIRouter(prefix='/vk-bots')
@@ -38,10 +38,8 @@ def validate_secret_key(data: dict) -> None:
         raise HTTPException(status.HTTP_403_FORBIDDEN, detail='Secret key is invalid')
 
 
-def get_bot_and_code(bot_type: str) -> tuple[BaseRoomBot, str]:
+def get_bot_and_code(bot_type: str) -> tuple[BaseBot, str]:
     match bot_type:
         case BotTypes.MAIN:
             return main_bot, settings.MAIN_CONFIRMATION_CODE
-        case BotTypes.REPORT:
-            return report_bot, settings.REPORT_CONFIRMATION_CODE
     raise HTTPException(status.HTTP_403_FORBIDDEN, detail='Invalid bot type')

@@ -1,4 +1,4 @@
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar, Union, get_origin
 
 import aiohttp
 from pydantic import parse_obj_as
@@ -9,14 +9,14 @@ RT = TypeVar('RT')
 
 
 class APIClient:
-    def __init__(self, authorization_token: str, base_url: None = None) -> None:
-        self.http_client = HTTPClient(base_url, authorization_token)
+    def __init__(self, base_url: str | None = None, authorization_token: str | None = None) -> None:
+        self.http_client = HTTPClient(base_url=base_url, authorization_token=authorization_token)
 
     async def get(
         self,
         url: str,
         query: dict | None = None,
-        response_model: RT | None = None,
+        response_model: type[RT] | None = None,
     ) -> RT:
         response = await self.http_client.request_get(url, query=query)
         return await self._parse_response(response, response_model)
@@ -66,4 +66,7 @@ class APIClient:
         response_json = await response.json()
         if response_json:
             return parse_obj_as(response_model, response_json)
+
+        if issubclass(get_origin(response_model), list):
+            return []
         return None
