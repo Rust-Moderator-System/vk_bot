@@ -1,7 +1,7 @@
 import dataclasses
 import time
 
-from app.core.constants import RCC_SERVER_NAMES, SECONDS_IN_DAY, AVAILABLE_BAN_REASONS, NOT_AVAILABLE_BAN_REASONS
+from app.core.constants import AVAILABLE_BAN_REASONS, NOT_AVAILABLE_BAN_REASONS, RCC_SERVER_NAMES, SECONDS_IN_DAY
 from app.filtres.abc import ABCFilter
 from services.RCC import RCCBan, RCCPlayer
 

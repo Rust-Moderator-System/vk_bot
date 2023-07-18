@@ -1,4 +1,5 @@
 import dataclasses
+
 from app.actions.abstract import AbstractAction
 from app.actions.exceptions import CantGetPlayersChecks
 from services.server import Player
