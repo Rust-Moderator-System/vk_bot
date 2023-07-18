@@ -14,6 +14,7 @@ WORKDIR ${PROJECT_HOME}
 
 COPY ./docker/ ./docker/
 COPY ./utils/ ./utils/
+COPY ./services ./services/
 COPY ./app/ ./app/
 COPY ./poetry.lock .
 COPY ./pyproject.toml .
