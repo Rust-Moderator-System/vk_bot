@@ -44,7 +44,7 @@ class RCCFilterBanByTime(ABCFilter):
     days: int
 
     def filter(self, player: RCCPlayer) -> bool:
-        bans = player.bans.copy()
+        bans = player.bans
         available_time = time.time() - self.days * SECONDS_IN_DAY
         bans = [ban for ban in bans if ban.ban_time > available_time]
         player.bans = bans
@@ -59,7 +59,7 @@ class RCCFilterBanExcludeServers(ABCFilter):
         self.exclude_servers = [server.lower() for server in self.exclude_servers]
 
     def filter(self, player: RCCPlayer) -> bool:
-        bans = player.bans.copy()
+        bans = player.bans
         bans = [ban for ban in bans if not ban.server_name.lower() in self.exclude_servers]
         player.bans = bans
         return bool(bans)
@@ -75,7 +75,7 @@ class RCCFilterBanReason(ABCFilter):
         self.not_available_reasons = [reason.lower() for reason in self.not_available_reasons]
 
     def filter(self, player: RCCPlayer) -> bool:
-        bans = player.bans.copy()
+        bans = player.bans
         bans = [ban for ban in bans if ban.reason.lower() in self.available_reasons]
         bans = [ban for ban in bans if not ban.reason.lower() in self.not_available_reasons]
         player.bans = bans
@@ -84,7 +84,7 @@ class RCCFilterBanReason(ABCFilter):
 
 class RCCFilterActiveBan(ABCFilter):
     def filter(self, player: RCCPlayer) -> bool:
-        bans = player.bans.copy()
+        bans = player.bans
         bans = [ban for ban in bans if not ban.active]
         player.bans = bans
         return bool(bans)
