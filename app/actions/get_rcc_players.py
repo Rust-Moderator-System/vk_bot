@@ -18,7 +18,10 @@ class GetRCCPlayersAction(AbstractAction):
     async def action(self) -> list[RCCPlayer]:
         players = []
         for i in range(0, len(self.steamids), self.PLAYERS_STEP):
-            players.extend(await self.RCC_API().get_players(self.steamids[i:i + self.PLAYERS_STEP]))
+            try:
+                players.extend(await self.RCC_API().get_players(self.steamids[i:i + self.PLAYERS_STEP]))
+            except Exception as exception:
+                logger.exception(exception)
         return players
     
     def raise_exception(self, from_exception: Exception):

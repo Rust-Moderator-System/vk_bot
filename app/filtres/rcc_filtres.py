@@ -74,10 +74,13 @@ class RCCFilterBanReason(ABCFilter):
         self.not_available_reasons = [reason.lower() for reason in self.not_available_reasons]
 
     def filter(self, player: RCCPlayer) -> bool:
-        bans = player.bans
-        bans = [ban for ban in bans if ban.reason.lower() in self.available_reasons]
-        bans = [ban for ban in bans if not ban.reason.lower() in self.not_available_reasons]
-        player.bans = bans
+        filtered_bans: list[RCCBan] = []
+        for ban in player.bans:
+            for avaialbe_reason in self.available_reasons:
+                if avaialbe_reason in ban.reason.lower():
+                    filtered_bans.append(ban)
+        bans = [ban for ban in filtered_bans if not ban.reason.lower() in self.not_available_reasons]
+        player.bans = filtered_bans
         return bool(bans)
 
 
