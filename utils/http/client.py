@@ -6,7 +6,7 @@ from loguru import logger
 
 class HTTPClient:
     def __init__(self, base_url: str | None = None, authorization_token: str | None = None) -> None:
-        self.client = aiohttp.ClientSession()
+        self.client = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=60*30))
         self.base_url = base_url
         if authorization_token:
             self.client.headers.update(

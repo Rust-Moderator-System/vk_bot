@@ -19,7 +19,6 @@ class RCCFilterEmpty(ABCFilter):
         return player.steamid and player.bans
 
 @dataclasses.dataclass
-
 class RCCFilterNotChecked(ABCFilter):
     checks_on_server: dict[str, int]
 

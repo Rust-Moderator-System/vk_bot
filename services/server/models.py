@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Player(BaseModel):
-    last_nickname: str
+    last_nickname: str = Field(alias='nickname')
     first_join: int
-    steamid: str
+    steamid: str = Field(alias='steam_id')
     server: int

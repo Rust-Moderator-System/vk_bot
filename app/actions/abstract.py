@@ -13,9 +13,9 @@ class AbstractAction(ABC):
     async def execute(self):
         try:
             return await self.action()
-        except Exception:
-            self.raise_exception()
+        except Exception as exception:
+            self.raise_exception(exception)
 
-    def raise_exception(self):
-        raise self.EXCEPTION
+    def raise_exception(self, from_exception: Exception):
+        raise self.EXCEPTION from from_exception
 

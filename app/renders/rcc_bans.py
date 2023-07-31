@@ -31,7 +31,7 @@ class RCCBansMessageRender(ABCMessageRender):
         return text
 
     def _get_after_ban_time(self, ban: RCCBan) -> str:
-        time_passed = self.now_time - ban.ban_date
+        time_passed = self.now_time - ban.ban_time
         return str(int(time_passed // 86400))
 
     def _short_server_name(self, full_server_name: str) -> str:

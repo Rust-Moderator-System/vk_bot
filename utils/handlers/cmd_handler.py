@@ -3,6 +3,7 @@ from typing import Any
 
 from vkbottle.bot import Message, rules
 from vkbottle.dispatch import ABCHandler, ABCRule
+from loguru import logger
 
 from utils.handlers.exceptions import CMDException
 from utils.handlers.mixins import CmdHelpMixin, ExceptionHandleMixin, GetContextMixin, RenderMixin
@@ -43,6 +44,8 @@ class BaseCmdHandler(ABCHandler, GetContextMixin, CmdHelpMixin, RenderMixin, Exc
             await self.execute_handler(event, **context)
         except CMDException as exception:
             await self.send_exception(event, exception)
+            logger.exception(exception)
+
 
     async def execute_handler(self, event: Message, **context) -> None:
         if context.get('help'):

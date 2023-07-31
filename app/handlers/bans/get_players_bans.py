@@ -53,12 +53,12 @@ class GetPlayersBans(BaseCmdHandler):
 
     async def use_filters(self, players: list[RCCPlayer]) -> list[RCCPlayer]:
         days_to_show_ban = self.context.get('days', DAYS_SHOW_BANS)
-        checks_on_server = await GetPlayersCheckAction(self.players_steamid).execute()
+        # checks_on_server = await GetPlayersCheckAction(self.players_steamid).execute()
         exclude_steamids = getattr(ExcludeSteamids, 'exclude_steamids', [])
         filtres = [
             RCCFilterEmpty(), # Обязательно первым идет
             RCCFilterNotInExclude(exclude_steamids),
-            RCCFilterNotChecked(checks_on_server),
+            # RCCFilterNotChecked(checks_on_server),
             RCCFilterActiveBan(),
             RCCFilterBanByTime(days_to_show_ban),
             RCCFilterBanReason(),
