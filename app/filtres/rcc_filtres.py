@@ -84,4 +84,4 @@ class RCCFilterBanReason(ABCFilter):
 class RCCFilterActiveBan(ABCFilter):
     def filter(self, player: RCCPlayer) -> bool:
         bans = player.bans
-        return any([ban for ban in bans if not ban.active])
+        return any([ban for ban in bans if ban.active])
