@@ -1,16 +1,20 @@
+from datetime import timezone, timedelta
+
 from pydantic import AnyUrl, BaseSettings, IPvAnyAddress
 from vkbottle import Token
 
 
 class Settings(BaseSettings):
     DEBUG: bool = True
+    TIMEZONE = timezone(timedelta(hours=3), name='Europe/Moscow')
 
     # VK SETTINTS
     SECRET_KEY: str = 'secret'
 
-    ## MAIN BOT
+    # MAIN BOT
     MAIN_BOT_TOKEN: Token
     MAIN_CONFIRMATION_CODE: str
+    WIPE_TIME: int = 14
 
     # SERVICES SETTINGS
     SERVER_API_URL: str

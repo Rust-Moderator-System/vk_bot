@@ -18,6 +18,8 @@ class RCCBansMessageRender(ABCMessageRender):
             return 'На сервере нет игроков с банами'
         text = 'Игроки с банами\n'
         for player in self.players:
+            if not player.steamid:
+                continue
             bans_info = self._get_bans_info(player.bans)
             text += f'{player.steamid}: {bans_info}\n'
         return text

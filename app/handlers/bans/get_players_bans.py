@@ -36,20 +36,22 @@ class ExcludeSteamids(BaseCmdHandler):
 
 @players_bans_labeler.message
 class GetPlayersBans(BaseCmdHandler):
-    command_pattern = ['/bans <days:int>', '/bans']
+    command_pattern = ['/bans <days:int>', '/bans <days:int> <filter:int>', '/bans', ]
     cmd = '/bans'
 
     help_text = 'Получить список игроков на сервере с банами'
     render_class = RCCBansMessageRender
 
 
-    async def handler(self, _) -> list[RCCPlayer]:
+    async def handler(self, message: Message) -> list[RCCPlayer]:
         online_players = await GetOnlinePlayersAction().execute()
         self.players_steamid = [player.steamid for player in online_players]
 
         rcc_players = await GetRCCPlayersAction(self.players_steamid).execute()
-        filtred_players = await self.use_filters(rcc_players)
-        return filtred_players
+
+        if self.is_filter:
+            return await self.use_filters(rcc_players)
+        return rcc_players
 
     async def use_filters(self, players: list[RCCPlayer]) -> list[RCCPlayer]:
         days_to_show_ban = self.context.get('days', DAYS_SHOW_BANS)
@@ -65,3 +67,6 @@ class GetPlayersBans(BaseCmdHandler):
         ]
         return [player for player in players if execute_filters(player, filtres)]
 
+    @property
+    def is_filter(self) -> bool:
+        return bool(self.context.get('filter', True))
