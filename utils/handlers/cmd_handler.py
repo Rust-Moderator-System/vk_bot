@@ -1,9 +1,9 @@
 import inspect
 from typing import Any
 
+from loguru import logger
 from vkbottle.bot import Message, rules
 from vkbottle.dispatch import ABCHandler, ABCRule
-from loguru import logger
 
 from utils.handlers.exceptions import CMDException
 from utils.handlers.mixins import CmdHelpMixin, ExceptionHandleMixin, GetContextMixin, RenderMixin

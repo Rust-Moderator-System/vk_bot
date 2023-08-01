@@ -1,4 +1,4 @@
-from datetime import timezone, timedelta
+from datetime import timedelta, timezone
 
 from pydantic import AnyUrl, BaseSettings, IPvAnyAddress
 from vkbottle import Token

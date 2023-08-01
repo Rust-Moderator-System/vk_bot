@@ -4,10 +4,9 @@ from datetime import datetime, timedelta
 from loguru import logger
 
 from app.core import settings
-from services.server.server_api import ServerAPI
 from services.RCC.rcc_api import RustCheatCheckAPI
 from services.RCC.rcc_cache import RCCPlayerCache
-
+from services.server.server_api import ServerAPI
 
 FRIDAY = 4
 MONDAY = 0

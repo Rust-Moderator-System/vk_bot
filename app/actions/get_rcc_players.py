@@ -1,6 +1,7 @@
 import dataclasses
 
 from loguru import logger
+
 from app.actions.abstract import AbstractAction
 from app.actions.exceptions import CantGetRCCPlayerInfo
 from services.RCC import RCCPlayer

@@ -23,9 +23,8 @@ class ServerAPI:
     
     async def get_players_checks(self, steamids: list[str]) -> dict[str, int]:
         """Возвращает словарь, где ключ - steamid, а значение - время начало последней проверки"""
-        steamids_query = ','.join(steamids)
-        return await self.client.get(
+        return await self.client.post(
             url=self.GET_PLAYERS_CHECK_ENDPOINT,
-            query={'ids': steamids_query},
+            body={'ids': steamids},
             response_model=dict,
         )
