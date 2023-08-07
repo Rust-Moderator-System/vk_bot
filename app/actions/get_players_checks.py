@@ -14,4 +14,4 @@ class GetPlayersCheckAction(AbstractAction):
     EXCEPTION = CantGetPlayersChecks
 
     async def action(self) -> list[Player]:
-        return await self.SERVER_API().get_players_checks(self.steamids)    
+        return await self.SERVER_API().get_players_checks(self.steamids)

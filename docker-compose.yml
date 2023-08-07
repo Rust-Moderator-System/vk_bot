@@ -6,18 +6,8 @@ services:
       dockerfile: ./docker/bot/Dockerfile
     container_name: bot
     env_file: .env
-    networks:
-      - magic_helper_network
-
-  nginx:
-    build:
-      context: .
-      dockerfile: ./docker/nginx/Dockerfile
-    container_name: nginx_bot
-    depends_on:
-      - bot
     ports:
-      - 80:80
+      - 7777:7777
     networks:
       - magic_helper_network
 

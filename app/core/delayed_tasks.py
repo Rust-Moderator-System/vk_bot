@@ -50,9 +50,9 @@ class ClearRCCCacheEveryWipe:
         self._rcc_cache = RCCPlayerCache()
 
     async def __call__(self) -> None:
-            while True:
-                await asyncio.sleep(self._seconds_to_next_wipe())
-                self._rcc_cache.clear()
+        while True:
+            await asyncio.sleep(self._seconds_to_next_wipe())
+            self._rcc_cache.clear()
 
     def _seconds_to_next_wipe(self) -> int:
         next_wipe = self.get_next_wipe_day()
