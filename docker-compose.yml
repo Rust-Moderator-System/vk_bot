@@ -6,8 +6,6 @@ services:
       dockerfile: ./docker/bot/Dockerfile
     container_name: bot
     env_file: .env
-    ports:
-      - 7777:7777
     networks:
       - magic_helper_network
 
