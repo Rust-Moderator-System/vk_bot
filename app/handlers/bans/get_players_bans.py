@@ -45,7 +45,7 @@ class GetPlayersBans(BaseCmdHandler):
 
     async def handler(self, message: Message) -> list[RCCPlayer]:
         online_players = await GetOnlinePlayersAction().execute()
-        self.players_steamid = [player.steamid for player in online_players[:50]]
+        self.players_steamid = [player.steamid for player in online_players]
 
         rcc_players = await GetRCCPlayersAction(self.players_steamid).execute()
 
